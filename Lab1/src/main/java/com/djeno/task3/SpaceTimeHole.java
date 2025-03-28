@@ -1,21 +1,28 @@
 package com.djeno.task3;
 
-public class SpaceTimeHole {
-    private boolean isRandom;
-    private int size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    public SpaceTimeHole(boolean isRandom, int size) {
-        this.isRandom = isRandom;
-        this.size = size;
-    }
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class SpaceTimeHole {
+    private int validPhraseSize;
+    private Galaxy galaxy;
 
     public boolean canTransport(Phrase phrase) {
-        return phrase.getText().length() <= size;
+        return phrase.getText().length() <= validPhraseSize;
     }
 
-    public void transport(Phrase phrase, Galaxy galaxy) {
-        if (isRandom && canTransport(phrase)) {
+    public void transport(Phrase phrase) {
+        if (canTransport(phrase)) {
             System.out.println("Дыра в пространстве-времени открылась и перенесла фразу в галактику: " + galaxy.getName());
+
+            galaxy.getPhraseFromSpaceTimeHole(phrase);
+
         } else {
             System.out.println("Фраза слишком большая для переноса.");
         }

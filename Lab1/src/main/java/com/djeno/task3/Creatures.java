@@ -1,18 +1,25 @@
 package com.djeno.task3;
 
+import com.djeno.task3.enums.Race;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Creatures {
-    private String type;
-    private String status;
+    private Race type;
     private int aggressionLevel;
 
-    public Creatures(String type, String status) {
-        this.type = type;
-        this.status = status;
-        this.aggressionLevel = 50; // Средний уровень агрессии
+    public void changeAggressionLevel(int change) {
+        if (change < 0) {
+            this.aggressionLevel = Math.max(0, this.aggressionLevel + change);
+        } else {
+            this.aggressionLevel = Math.min(100, this.aggressionLevel + change);
+        }
     }
+
 }

@@ -35,9 +35,8 @@ public class ArccosSeriesTest {
         assertEquals(expected, result, 1e-6);
     }
 
-    // Для arccos x должен быть в пределах от -1 до 1
     @ParameterizedTest
-    @ValueSource(doubles = { -2.0, 2.0, 1.1, -1.1 })
+    @ValueSource(doubles = {-3.0, -2.0, 2.0, 1.1, -1.1, 2.0, 3.0})
     void testArccosInvalidInput(double x) {
         assertThrows(IllegalArgumentException.class, () -> {
             ArccosSeries.arccos(x, 50);

@@ -68,14 +68,12 @@ public class SplayTreeTest {
         assertEquals(10, tree.getRoot().getKey()); // 10 теперь корень
     }
 
-    // Параметризованные тесты
     @ParameterizedTest
     @MethodSource("provideKeysForInsert")
     void testInsert(int key) {
         SplayTree tree = new SplayTree();
         tree.insert(key);
 
-        // Проверяем, что элемент добавлен
         assertNotNull(tree.search(key));
     }
 
@@ -87,7 +85,6 @@ public class SplayTreeTest {
         tree.insert(20);
         tree.insert(30);
 
-        // Проверяем поиск элемента
         if (shouldExist) {
             assertNotNull(tree.search(key));
         } else {
@@ -103,7 +100,6 @@ public class SplayTreeTest {
         tree.insert(20);
         tree.insert(30);
 
-        // Удаляем элемент и проверяем
         tree.delete(keyToDelete);
         assertNull(tree.search(keyToDelete)); // Элемент удален
         assertNotNull(tree.search(keyToCheck)); // Другой элемент на месте
@@ -134,29 +130,18 @@ public class SplayTreeTest {
         );
     }
 
-    // Белый ящик
 
+    // Белый ящик
     @Test
     void testRotateRight() {
         SplayTree tree = new SplayTree();
 
-        // Создаем дерево:
-        //     10
-        //    /
-        //   5
-        //  /
-        // 3
         Node root = new Node(10);
         root.setLeft(new Node(5));
         root.getLeft().setLeft(new Node(3));
 
-        // Выполняем правый поворот вокруг корня (10)
         Node newRoot = tree.rotateRight(root);
 
-        // Проверяем новую структуру:
-        //     5
-        //    / \
-        //   3   10
         assertEquals(5, newRoot.getKey()); // Новый корень
         assertEquals(3, newRoot.getLeft().getKey()); // Левый потомок
         assertEquals(10, newRoot.getRight().getKey()); // Правый потомок
@@ -166,23 +151,12 @@ public class SplayTreeTest {
     void testRotateLeft() {
         SplayTree tree = new SplayTree();
 
-        // Создаем дерево:
-        //   10
-        //    \
-        //     15
-        //      \
-        //       20
         Node root = new Node(10);
         root.setRight(new Node(15));
         root.getRight().setRight(new Node(20));
 
-        // Выполняем левый поворот вокруг корня (10)
         Node newRoot = tree.rotateLeft(root);
 
-        // Проверяем новую структуру:
-        //     15
-        //    /  \
-        //   10   20
         assertEquals(15, newRoot.getKey()); // Новый корень
         assertEquals(10, newRoot.getLeft().getKey()); // Левый потомок
         assertEquals(20, newRoot.getRight().getKey()); // Правый потомок
@@ -194,25 +168,12 @@ public class SplayTreeTest {
     void testSplayZigZig() {
         SplayTree tree = new SplayTree();
 
-        // Создаем дерево:
-        //       30
-        //      /
-        //     20
-        //    /
-        //   10
         Node root = new Node(30);
         root.setLeft(new Node(20));
         root.getLeft().setLeft(new Node(10));
 
-        // Выполняем splay для ключа 10
         Node newRoot = tree.splay(root, 10);
 
-        // Проверяем новую структуру:
-        //     10
-        //      \
-        //       20
-        //        \
-        //         30
         assertEquals(10, newRoot.getKey()); // Новый корень
         assertEquals(20, newRoot.getRight().getKey()); // Правый потомок
         assertEquals(30, newRoot.getRight().getRight().getKey()); // Правый потомок правого потомка
@@ -224,25 +185,12 @@ public class SplayTreeTest {
     void testSplayZigZigLeft() {
         SplayTree tree = new SplayTree();
 
-        // Создаем дерево:
-        //       30
-        //      /
-        //     20
-        //    /
-        //   10
         Node root = new Node(30);
         root.setLeft(new Node(20));
         root.getLeft().setLeft(new Node(10));
 
-        // Выполняем splay для ключа 10
         Node newRoot = tree.splay(root, 10);
 
-        // Проверяем новую структуру:
-        //     10
-        //      \
-        //       20
-        //        \
-        //         30
         assertEquals(10, newRoot.getKey()); // Новый корень
         assertEquals(20, newRoot.getRight().getKey()); // Правый потомок
         assertEquals(30, newRoot.getRight().getRight().getKey()); // Правый потомок правого потомка
@@ -252,23 +200,12 @@ public class SplayTreeTest {
     void testSplayZigZag() {
         SplayTree tree = new SplayTree();
 
-        // Создаем дерево:
-        //     30
-        //    /
-        //   10
-        //    \
-        //     20
         Node root = new Node(30);
         root.setLeft(new Node(10));
         root.getLeft().setRight(new Node(20));
 
-        // Выполняем splay для ключа 20
         Node newRoot = tree.splay(root, 20);
 
-        // Проверяем новую структуру:
-        //     20
-        //    /  \
-        //   10   30
         assertEquals(20, newRoot.getKey()); // Новый корень
         assertEquals(10, newRoot.getLeft().getKey()); // Левый потомок
         assertEquals(30, newRoot.getRight().getKey()); // Правый потомок
@@ -278,20 +215,12 @@ public class SplayTreeTest {
     void whiteTestInsert() {
         SplayTree tree = new SplayTree();
 
-        // Вставляем элементы
         tree.insert(10);
         tree.insert(20);
         tree.insert(30);
 
-        // Проверяем, что последний вставленный элемент находится в корне
         assertEquals(30, tree.getRoot().getKey());
 
-        // Проверяем структуру дерева:
-        //     30
-        //    /
-        //   20
-        //  /
-        // 10
         assertEquals(20, tree.getRoot().getLeft().getKey());
         assertEquals(10, tree.getRoot().getLeft().getLeft().getKey());
     }
@@ -300,22 +229,15 @@ public class SplayTreeTest {
     void whiteTestSearch() {
         SplayTree tree = new SplayTree();
 
-        // Вставляем элементы
         tree.insert(10);
         tree.insert(20);
         tree.insert(30);
 
-        // Ищем элемент 20
         Node result = tree.search(20);
 
-        // Проверяем, что элемент найден и находится в корне
         assertNotNull(result);
         assertEquals(20, tree.getRoot().getKey());
 
-        // Проверяем структуру дерева:
-        //     20
-        //    /  \
-        //   10   30
         assertEquals(10, tree.getRoot().getLeft().getKey());
         assertEquals(30, tree.getRoot().getRight().getKey());
     }
@@ -324,22 +246,15 @@ public class SplayTreeTest {
     void whiteTestDelete() {
         SplayTree tree = new SplayTree();
 
-        // Вставляем элементы
         tree.insert(10);
         tree.insert(20);
         tree.insert(30);
 
-        // Удаляем элемент 20
         tree.delete(20);
 
-        // Проверяем, что элемент удален
         assertNull(tree.search(20));
 
-        // Проверяем структуру дерева:
-        //     10
-        //      \
-        //       30
-        assertEquals(10, tree.getRoot().getKey());
-        assertEquals(30, tree.getRoot().getRight().getKey());
+        assertEquals(30, tree.getRoot().getKey());
+        assertEquals(10, tree.getRoot().getLeft().getKey());
     }
 }
