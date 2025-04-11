@@ -21,5 +21,4 @@ public class Creatures {
             this.aggressionLevel = Math.min(100, this.aggressionLevel + change);
         }
     }
-
 }

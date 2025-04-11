@@ -31,6 +31,16 @@ public class GalaxyTest {
         galaxy.addCreature(klingon);
     }
 
+    private static Stream<Arguments> emotionEffectProvider() {
+        return Stream.of(
+                Arguments.of(EmotionalState.HAPPY, 0, 10, false),
+                Arguments.of(EmotionalState.SAD, 40, 70, false),
+                Arguments.of(EmotionalState.PANIC, 60, 90, true),
+                Arguments.of(EmotionalState.ANGRY, 80, 100, true),
+                Arguments.of(EmotionalState.CALM, 30, 60, false)
+        );
+    }
+
     @ParameterizedTest
     @MethodSource("emotionEffectProvider")
     void getPhraseFromSpaceTimeHole_shouldChangeAggressionCorrectly(
@@ -51,13 +61,12 @@ public class GalaxyTest {
         );
     }
 
-    private static Stream<Arguments> emotionEffectProvider() {
+    private static Stream<Arguments> warStatusProvider() {
         return Stream.of(
-                Arguments.of(EmotionalState.HAPPY, 0, 10, false),
-                Arguments.of(EmotionalState.SAD, 40, 70, false),
-                Arguments.of(EmotionalState.PANIC, 60, 90, true),
-                Arguments.of(EmotionalState.ANGRY, 80, 100, true),
-                Arguments.of(EmotionalState.CALM, 30, 60, false)
+                Arguments.of(30, 60, false, false),
+                Arguments.of(80, 90, false, true),
+                Arguments.of(30, 60, true, false),
+                Arguments.of(80, 90, true, true)
         );
     }
 
@@ -76,15 +85,6 @@ public class GalaxyTest {
         galaxy.getPhraseFromSpaceTimeHole(new Phrase("Test", EmotionalState.CALM));
 
         assertEquals(expectedWarStatus, galaxy.isWar());
-    }
-
-    private static Stream<Arguments> warStatusProvider() {
-        return Stream.of(
-                Arguments.of(30, 60, false, false),
-                Arguments.of(80, 90, false, true),
-                Arguments.of(30, 60, true, false),
-                Arguments.of(80, 90, true, true)
-        );
     }
 
     @Test

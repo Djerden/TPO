@@ -12,18 +12,6 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreatureTest {
-    @ParameterizedTest
-    @MethodSource("aggressionChangeProvider")
-    void changeAggressionLevel_shouldCorrectlyModifyLevel(
-            int initialLevel,
-            int change,
-            int expectedLevel) {
-        Creatures creature = new Creatures(Race.HUMAN, initialLevel);
-
-        creature.changeAggressionLevel(change);
-
-        assertEquals(expectedLevel, creature.getAggressionLevel());
-    }
 
     private static Stream<Arguments> aggressionChangeProvider() {
         return Stream.of(
@@ -41,5 +29,18 @@ public class CreatureTest {
                 Arguments.of(0, 1000, 100),
                 Arguments.of(100, -1000, 0)
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource("aggressionChangeProvider")
+    void changeAggressionLevel_shouldCorrectlyModifyLevel(
+            int initialLevel,
+            int change,
+            int expectedLevel) {
+        Creatures creature = new Creatures(Race.HUMAN, initialLevel);
+
+        creature.changeAggressionLevel(change);
+
+        assertEquals(expectedLevel, creature.getAggressionLevel());
     }
 }

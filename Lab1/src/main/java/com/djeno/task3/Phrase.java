@@ -14,5 +14,4 @@ import lombok.Setter;
 public class Phrase {
     private String text;
     private EmotionalState emotion;
-
 }
