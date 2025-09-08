@@ -26,10 +26,6 @@ public class Cot implements Calculable {
             return Double.NaN;
         }
 
-        if (Math.abs(sinValue) < precision) {
-            return Double.NaN;
-        }
-
         return cosValue / sinValue;
     }
 }

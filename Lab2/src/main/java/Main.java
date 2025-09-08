@@ -12,10 +12,10 @@ public class Main {
         String cotOutputFile = "cot_output.csv";
         String log5OutputFile = "log5_output.csv";
 
-        double start = -2;
+        double start = -5.5;
         double end = 3;
-        double step = 0.5;
-        double precision = 0.001;
+        double step = 0.1;
+        double precision = 0.01;
 
         Sin sin = new Sin();
         Cos cos = new Cos(sin);
