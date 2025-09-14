@@ -78,7 +78,6 @@ public class SystemOfFunctions implements Calculable {
         double log3X = log3.calculate(x, precision);
         double log5X = log5.calculate(x, precision);
 
-        // Проверяем на особые случаи (деление на ноль, бесконечности)
         if (Double.isNaN(lnX) || Double.isNaN(log2X) || Double.isNaN(log3X) || Double.isNaN(log5X) ||
                 Double.isInfinite(lnX) || Double.isInfinite(log2X) || Double.isInfinite(log3X) || Double.isInfinite(log5X)) {
             return Double.NaN;

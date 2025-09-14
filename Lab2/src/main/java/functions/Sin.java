@@ -2,7 +2,7 @@ package functions;
 
 import interfaces.Calculable;
 
-public class Sin implements Calculable {
+public class  Sin implements Calculable {
 
     @Override
     public double calculate(double x, double precision) {
