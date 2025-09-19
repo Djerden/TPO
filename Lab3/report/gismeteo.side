@@ -1,0 +1,21 @@
+{
+  "id": "16d8a3fb-6560-4068-9981-d6ff490925e9",
+  "version": "2.0",
+  "name": "gismeteo",
+  "url": "",
+  "tests": [{
+    "id": "751eb9b0-4f6f-44e4-aa4f-0ec1f9705f5a",
+    "name": "Untitled",
+    "commands": []
+  }],
+  "suites": [{
+    "id": "8bb910d4-9bab-40e2-b6d7-96fa9a0f1490",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["751eb9b0-4f6f-44e4-aa4f-0ec1f9705f5a"]
+  }],
+  "urls": [],
+  "plugins": []
+}
